@@ -19,3 +19,6 @@ Included figures:
 - `figures/config_map0_exp0.png`: Configuration 1 (map0 exp0).
 - `figures/config_map1_exp5.png`: Configuration 2 (map1 exp5).
 - `figures/config_map4_exp6.png`: Configuration 3 (map4 exp6).
+- `figures/map1.png`: Base OfficeWorld map1 used in the Table 4 sweep.
+- `figures/map2.png`: Base OfficeWorld map2 used in the Table 4 sweep.
+- `figures/map3.png`: Base OfficeWorld map3 used in the Table 4 sweep.
