@@ -20,7 +20,7 @@ The pinned companion library is:
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
 - tag: `v0.3.0-ijcai2026`
-- commit: `da060c4f13f79f869c606ef0120d8c37aa0e81a5`
+- commit: `fa1f90b5516389aadbecf654deecf9da38823c4b`
 
 Before making this repository public, push that tag to
 `https://github.com/Alee08/multiagent-rl-rm` or publish the matching PyPI
@@ -52,6 +52,18 @@ Run the main OfficeWorld suite:
 
 ```bash
 python scripts/reproduce_officeworld.py --suite paper_main
+```
+
+Run the five-configuration paper table suite:
+
+```bash
+python scripts/reproduce_officeworld.py --suite paper_table6
+```
+
+Run the 30-seed appendix sweep:
+
+```bash
+python scripts/reproduce_officeworld.py --suite paper_appendix_15
 ```
 
 Run the full encoded OfficeWorld sweep:

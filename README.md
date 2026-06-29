@@ -22,7 +22,7 @@ The artifact is pinned to the companion-library release tag:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - tag: `v0.3.0-ijcai2026`
-- commit: `da060c4f13f79f869c606ef0120d8c37aa0e81a5`
+- commit: `fa1f90b5516389aadbecf654deecf9da38823c4b`
 
 Before making this repository public, push the tag to
 `Alee08/multiagent-rl-rm` or publish the matching PyPI release and update
@@ -63,8 +63,10 @@ Suites are defined in `configs/officeworld_discrete.json`.
 | Suite | Runs | Purpose |
 | --- | ---: | --- |
 | `smoke` | 1 | Fast local/CI sanity check. |
-| `paper_main` | 80 | Main OfficeWorld configuration. |
-| `officeworld_discrete` | 1680 | Full encoded OfficeWorld sweep. |
+| `paper_main` | 300 | Three main OfficeWorld configurations. |
+| `paper_table6` | 500 | Five configurations summarized in the paper table. |
+| `paper_appendix_15` | 4500 | Appendix sweep over map1-map3, exp1-exp5, 30 seeds. |
+| `officeworld_discrete` | 2100 | Full encoded OfficeWorld sweep. |
 
 Run a suite:
 
@@ -83,8 +85,8 @@ python scripts/reproduce_officeworld.py \
 ```
 
 The configured algorithm identifiers are the ones exposed by the frozen
-OfficeWorld runner: `QL`, `QRM`, `RMAX`, `RMAXRM`, `QRMAX`, `QRMAXRM`, `UCBVI`,
-and `OPSRL`.
+OfficeWorld runner: `QL`, `QRM`, `RMAX`, `RMAXRM`, `QRMAX`, `QRMAXRM`,
+`UCBVI-sB`, `UCBVI-B`, `UCBVI-H`, and `OPSRL`.
 
 ## Outputs
 

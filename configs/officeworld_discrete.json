@@ -9,12 +9,12 @@
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
     "tag": "v0.3.0-ijcai2026",
-    "commit": "da060c4f13f79f869c606ef0120d8c37aa0e81a5",
+    "commit": "fa1f90b5516389aadbecf654deecf9da38823c4b",
     "environment": "multiagent_rlrm.environments.office_world",
     "note": "Pinned to the annotated IJCAI artifact tag."
   },
   "defaults": {
-    "gamma": 0.99,
+    "gamma": 0.9,
     "eval": 1000,
     "Kthreshold": 39,
     "VIdelta": 0.01,
@@ -39,22 +39,94 @@
       ]
     },
     "paper_main": {
-      "description": "Main OfficeWorld setting used by the IJCAI artifact.",
-      "expected_runs": 80,
+      "description": "Three main OfficeWorld configurations reported in the paper.",
+      "expected_runs": 300,
       "steps": 10000000,
       "stochastic": true,
       "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       "runs": [
         {
+          "map": "map0",
+          "experiments": ["exp0"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map1",
+          "experiments": ["exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
           "map": "map4",
           "experiments": ["exp6"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        }
+      ]
+    },
+    "paper_table6": {
+      "description": "Five OfficeWorld configurations summarized in the paper table.",
+      "expected_runs": 500,
+      "steps": 10000000,
+      "stochastic": true,
+      "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "runs": [
+        {
+          "map": "map0",
+          "experiments": ["exp0"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map1",
+          "experiments": ["exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map4",
+          "experiments": ["exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map2",
+          "experiments": ["exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map3",
+          "experiments": ["exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        }
+      ]
+    },
+    "paper_appendix_15": {
+      "description": "Appendix sweep over map1-map3 and exp1-exp5 with 30 random seeds.",
+      "expected_runs": 4500,
+      "steps": 10000000,
+      "stochastic": true,
+      "seeds": [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+      ],
+      "runs": [
+        {
+          "map": "map1",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map2",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
+        },
+        {
+          "map": "map3",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         }
       ]
     },
     "officeworld_discrete": {
       "description": "Full OfficeWorld sweep encoded for the artifact.",
-      "expected_runs": 1680,
+      "expected_runs": 2100,
       "steps": 10000000,
       "stochastic": true,
       "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -62,27 +134,27 @@
         {
           "map": "map0",
           "experiments": ["exp0_simply", "exp0"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         },
         {
           "map": "map1",
           "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         },
         {
           "map": "map2",
           "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         },
         {
           "map": "map3",
           "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         },
         {
           "map": "map4",
           "experiments": ["exp6"],
-          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI-sB", "UCBVI-B", "UCBVI-H", "OPSRL"]
         }
       ]
     }
