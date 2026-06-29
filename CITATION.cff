@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this artifact in academic work, please cite the associated paper and software."
+type: software
+title: "QR-MAX IJCAI Reproducibility Artifact"
+version: "0.1.0"
+date-released: "2026-06-29"
+license: "Apache-2.0"
+repository-code: "https://github.com/Alee08/qrmax"
+authors:
+  - family-names: "Trapasso"
+    given-names: "Alessandro"
+    email: "Ale.trapasso8@gmail.com"
+    orcid: "https://orcid.org/0000-0001-5431-6607"
+preferred-citation:
+  type: article
+  title: "Model-Based Reinforcement Learning in Discrete-Action Non-Markovian Reward Decision Processes"
+  authors:
+    - family-names: "Trapasso"
+      given-names: "Alessandro"
+  url: "https://arxiv.org/abs/2512.14617"
+keywords:
+  - reinforcement-learning
+  - reward-machines
+  - non-markovian-reward
+  - qrmax
+  - reproducibility

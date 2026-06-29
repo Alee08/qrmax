@@ -1,0 +1,90 @@
+{
+  "artifact": "qrmax-ijcai-officeworld",
+  "paper": {
+    "title": "Model-Based Reinforcement Learning in Discrete-Action Non-Markovian Reward Decision Processes",
+    "arxiv": "https://arxiv.org/abs/2512.14617"
+  },
+  "library": {
+    "package": "multiagent-rl-rm",
+    "repository": "https://github.com/Alee08/multiagent-rl-rm",
+    "package_version": "0.3.0",
+    "tag": "v0.3.0-ijcai2026",
+    "commit": "17da42eed2db4ae736d64c1dc22bf135dc00bb91",
+    "environment": "multiagent_rlrm.environments.office_world",
+    "note": "Pinned to the annotated IJCAI artifact tag."
+  },
+  "defaults": {
+    "gamma": 0.99,
+    "eval": 1000,
+    "Kthreshold": 39,
+    "VIdelta": 0.01,
+    "highprob": 0.8,
+    "wandb": false,
+    "early_stop": false
+  },
+  "suites": {
+    "smoke": {
+      "description": "Single short run used for local and CI sanity checks.",
+      "expected_runs": 1,
+      "steps": 1000,
+      "eval": 500,
+      "stochastic": false,
+      "seeds": [100],
+      "runs": [
+        {
+          "map": "map1",
+          "experiments": ["exp1"],
+          "algorithms": ["QRMAX"]
+        }
+      ]
+    },
+    "paper_main": {
+      "description": "Main OfficeWorld setting used by the IJCAI artifact.",
+      "expected_runs": 80,
+      "steps": 10000000,
+      "stochastic": true,
+      "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "runs": [
+        {
+          "map": "map4",
+          "experiments": ["exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        }
+      ]
+    },
+    "officeworld_discrete": {
+      "description": "Full OfficeWorld sweep encoded for the artifact.",
+      "expected_runs": 1680,
+      "steps": 10000000,
+      "stochastic": true,
+      "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "runs": [
+        {
+          "map": "map0",
+          "experiments": ["exp0_simply", "exp0"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        },
+        {
+          "map": "map1",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        },
+        {
+          "map": "map2",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        },
+        {
+          "map": "map3",
+          "experiments": ["exp1", "exp2", "exp3", "exp4", "exp5", "exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        },
+        {
+          "map": "map4",
+          "experiments": ["exp6"],
+          "algorithms": ["QL", "QRM", "RMAX", "RMAXRM", "QRMAX", "QRMAXRM", "UCBVI", "OPSRL"]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+# Frozen companion library for the IJCAI artifact.
+# After publishing the PyPI release, this can become: multiagent-rl-rm==0.3.0
+multiagent-rl-rm @ git+https://github.com/Alee08/multiagent-rl-rm.git@v0.3.0-ijcai2026
