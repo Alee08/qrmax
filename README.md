@@ -1,6 +1,6 @@
-# QR-MAX IJCAI Artifact
+# QR-MAX
 
-This repository contains the reproducibility layer for:
+This repository contains the reproducibility package for:
 
 > Model-Based Reinforcement Learning in Discrete-Action Non-Markovian Reward
 > Decision Processes
@@ -17,16 +17,16 @@ post-processing scripts.
 
 ## Dependency Freeze
 
-The artifact is pinned to the companion-library release tag:
+This repository is pinned to the companion-library release tag:
 
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - tag: `v0.3.0-ijcai2026`
 - commit: `fa1f90b5516389aadbecf654deecf9da38823c4b`
 
-Before making this repository public, push the tag to
-`Alee08/multiagent-rl-rm` or publish the matching PyPI release and update
-`requirements.txt` to `multiagent-rl-rm==0.3.0`.
+The default `requirements.txt` installs the companion library from this frozen
+tag. If the matching release is later published to PyPI, `requirements.txt` can
+be switched to `multiagent-rl-rm==0.3.0`.
 
 ## Install
 

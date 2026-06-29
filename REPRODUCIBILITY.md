@@ -1,6 +1,6 @@
 # Reproducibility
 
-This repository is the reproducibility layer for the QR-MAX IJCAI artifact.
+This repository is the reproducibility package for the QR-MAX IJCAI experiments.
 The implementation is provided by the pinned `multiagent-rl-rm` release tag in
 `requirements.txt`; this repository keeps the experiment matrices, launchers,
 and post-processing scripts.
@@ -95,5 +95,5 @@ python scripts/summarize_officeworld.py \
   --output paper_results/officeworld_summary.csv
 ```
 
-Keep committed artifacts small: prefer aggregate CSVs, checksums, and plotting
+Keep committed outputs small: prefer aggregate CSVs, checksums, and plotting
 inputs under `paper_results/`, not full raw logs.
