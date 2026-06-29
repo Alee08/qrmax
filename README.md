@@ -102,6 +102,9 @@ python scripts/summarize_officeworld.py \
   --output paper_results/officeworld_summary.csv
 ```
 
+The reported Table 6 OfficeWorld values from the paper are included as
+`paper_results/table6_officeworld_steps.csv` for reference.
+
 See `REPRODUCIBILITY.md` for the full workflow.
 
 ## Citation
