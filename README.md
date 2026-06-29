@@ -22,7 +22,7 @@ The artifact is pinned to the companion-library release tag:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - tag: `v0.3.0-ijcai2026`
-- commit: `17da42eed2db4ae736d64c1dc22bf135dc00bb91`
+- commit: `da060c4f13f79f869c606ef0120d8c37aa0e81a5`
 
 Before making this repository public, push the tag to
 `Alee08/multiagent-rl-rm` or publish the matching PyPI release and update

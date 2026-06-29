@@ -20,7 +20,7 @@ The pinned companion library is:
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
 - tag: `v0.3.0-ijcai2026`
-- commit: `17da42eed2db4ae736d64c1dc22bf135dc00bb91`
+- commit: `da060c4f13f79f869c606ef0120d8c37aa0e81a5`
 
 Before making this repository public, push that tag to
 `https://github.com/Alee08/multiagent-rl-rm` or publish the matching PyPI

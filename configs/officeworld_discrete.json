@@ -9,7 +9,7 @@
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
     "tag": "v0.3.0-ijcai2026",
-    "commit": "17da42eed2db4ae736d64c1dc22bf135dc00bb91",
+    "commit": "da060c4f13f79f869c606ef0120d8c37aa0e81a5",
     "environment": "multiagent_rlrm.environments.office_world",
     "note": "Pinned to the annotated IJCAI artifact tag."
   },
