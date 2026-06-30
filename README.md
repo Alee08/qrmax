@@ -22,11 +22,11 @@ This repository is pinned to the companion-library commit:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `753a19d59097bae90433c561046b1ae917256907`
+- pinned commit: `79ba46fd0add6040ee933f1eca93584bcd4ebc82`
 
 The default `requirements.txt` installs the companion library from this frozen
 commit. The pinned commit includes the OfficeWorld IJCAI code and the
-continuous-line Bucket QR-MAX sanity experiment.
+continuous-line and continuous-corridor Bucket QR-MAX checks.
 
 ## Install
 
@@ -62,10 +62,22 @@ Validate the continuous-line Bucket QR-MAX suites:
 python scripts/validate_continuous_line_config.py
 ```
 
+Validate the continuous-corridor Bucket QR-MAX suites:
+
+```bash
+python scripts/validate_continuous_corridor_config.py
+```
+
 Run the continuous-line smoke experiment:
 
 ```bash
 python scripts/reproduce_continuous_line.py --suite continuous_line_smoke
+```
+
+Run the continuous-corridor smoke experiment:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_smoke
 ```
 
 ## Experiment Suites
@@ -125,6 +137,30 @@ python scripts/reproduce_continuous_line.py --suite bucket_event_ablation
 The included reference sweep is
 `paper_results/continuous_line_bucket_qrmax_reference.csv`.
 
+## Continuous-Corridor Bucket QR-MAX
+
+The companion library also exposes a 2D continuous-state corridor check for
+Bucket QR-MAX. The task uses state `(x, y)`, four discrete actions, low
+transition noise, and a Reward Machine sequence `A -> B`.
+
+Suites are defined in `configs/continuous_corridor_bucket_qrmax.json`.
+
+| Suite | Runs | Purpose |
+| --- | ---: | --- |
+| `continuous_corridor_smoke` | 1 | Fast event-aware QR-MAX sanity check. |
+| `bucket_event_ablation` | 2 | Compare plain buckets with event-aware buckets for QR-MAX. |
+| `continuous_corridor_algorithm_comparison` | 3 | Compare Q-learning, R-MAX, and QR-MAX. |
+| `continuous_corridor_y_bucket_sweep` | 4 | Sweep vertical bucket granularity for QR-MAX. |
+
+Run the QR-MAX corridor event-ablation suite:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite bucket_event_ablation
+```
+
+The included reference sweep is
+`paper_results/continuous_corridor_bucket_qrmax_reference.csv`.
+
 ## Outputs
 
 The upstream OfficeWorld runner writes raw logs under `results/` and summary
@@ -145,6 +181,8 @@ The extended 15-configuration OfficeWorld breakdown is included as
 `paper_results/table4_officeworld_15_configs.csv`.
 Continuous-line Bucket QR-MAX reference sweeps are included as
 `paper_results/continuous_line_bucket_qrmax_reference.csv`.
+Continuous-corridor Bucket QR-MAX reference sweeps are included as
+`paper_results/continuous_corridor_bucket_qrmax_reference.csv`.
 
 ## Table 4: OfficeWorld 15-Configuration Breakdown
 

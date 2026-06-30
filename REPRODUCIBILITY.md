@@ -20,10 +20,10 @@ The pinned companion library is:
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `753a19d59097bae90433c561046b1ae917256907`
+- pinned commit: `79ba46fd0add6040ee933f1eca93584bcd4ebc82`
 
 The pinned commit includes the OfficeWorld IJCAI code and the continuous-line
-Bucket QR-MAX sanity experiment.
+and continuous-corridor Bucket QR-MAX checks.
 
 ## Sanity Checks
 
@@ -51,10 +51,22 @@ Validate the continuous-line suite counts:
 python scripts/validate_continuous_line_config.py
 ```
 
+Validate the continuous-corridor suite counts:
+
+```bash
+python scripts/validate_continuous_corridor_config.py
+```
+
 Run the continuous-line smoke check:
 
 ```bash
 python scripts/reproduce_continuous_line.py --suite continuous_line_smoke
+```
+
+Run the continuous-corridor smoke check:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_smoke
 ```
 
 ## Experiment Suites
@@ -93,6 +105,18 @@ Run the continuous-line algorithm comparison:
 
 ```bash
 python scripts/reproduce_continuous_line.py --suite continuous_algorithm_comparison
+```
+
+Run the continuous-corridor Bucket QR-MAX event-ablation suite:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite bucket_event_ablation
+```
+
+Run the continuous-corridor algorithm comparison:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_algorithm_comparison
 ```
 
 Use filters for partial reruns:

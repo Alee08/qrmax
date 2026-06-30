@@ -1,0 +1,84 @@
+{
+  "name": "qrmax-continuous-corridor-bucket",
+  "library": {
+    "package": "multiagent-rl-rm",
+    "repository": "https://github.com/Alee08/multiagent-rl-rm",
+    "package_version": "0.3.0",
+    "commit": "79ba46fd0add6040ee933f1eca93584bcd4ebc82",
+    "environment": "multiagent_rlrm.environments.continuous_corridor",
+    "note": "Pinned to the commit that adds the 2D continuous-corridor Bucket QR-MAX experiment."
+  },
+  "defaults": {
+    "seeds": [
+      1700, 1701, 1702, 1703, 1704,
+      1705, 1706, 1707, 1708, 1709
+    ],
+    "train_episodes": 300,
+    "eval_episodes": 100,
+    "buckets_x": [10],
+    "buckets_y": [4],
+    "thresholds": [8],
+    "noise_std": [0.003]
+  },
+  "suites": {
+    "continuous_corridor_smoke": {
+      "description": "Fast event-aware QR-MAX sanity check on the 2D continuous-corridor task.",
+      "expected_runs": 1,
+      "seeds": [1700],
+      "train_episodes": 150,
+      "eval_episodes": 50,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [true],
+          "buckets_x": [10],
+          "buckets_y": [4],
+          "thresholds": [8],
+          "noise_std": [0.003]
+        }
+      ]
+    },
+    "bucket_event_ablation": {
+      "description": "QR-MAX ablation comparing plain buckets with event-aware buckets.",
+      "expected_runs": 2,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets_x": [10],
+          "buckets_y": [4],
+          "thresholds": [8],
+          "noise_std": [0.003]
+        }
+      ]
+    },
+    "continuous_corridor_algorithm_comparison": {
+      "description": "Compare Q-learning, R-MAX, and QR-MAX on the event-aware 2D corridor task.",
+      "expected_runs": 3,
+      "runs": [
+        {
+          "algorithms": ["QL", "RMAX", "QRMAX"],
+          "event_aware": [true],
+          "buckets_x": [10],
+          "buckets_y": [4],
+          "thresholds": [8],
+          "noise_std": [0.003]
+        }
+      ]
+    },
+    "continuous_corridor_y_bucket_sweep": {
+      "description": "Sweep vertical bucket granularity for plain and event-aware QR-MAX.",
+      "expected_runs": 4,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets_x": [10],
+          "buckets_y": [2, 4],
+          "thresholds": [8],
+          "noise_std": [0.003]
+        }
+      ]
+    }
+  }
+}

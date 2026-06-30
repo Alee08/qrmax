@@ -1,0 +1,10 @@
+suite,algorithm,event_aware,buckets_x,buckets_y,threshold,noise_std,seeds,train_episodes,eval_episodes,success_mean,success_min,success_max,average_length_mean,first_perfect_eval_episode_mean,source
+bucket_event_ablation,QRMAX,false,10,4,8,0.003,1700-1709,300,100,0.106000,0.000000,1.000000,21.680000,100.000000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+bucket_event_ablation,QRMAX,true,10,4,8,0.003,1700-1709,300,100,0.999000,0.990000,1.000000,12.569354,47.500000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_algorithm_comparison,QL,true,10,4,8,0.003,1700-1709,300,100,1.000000,1.000000,1.000000,7.790000,25.000000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_algorithm_comparison,RMAX,true,10,4,8,0.003,1700-1709,300,100,0.706000,0.000000,1.000000,8.176667,57.142857,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_algorithm_comparison,QRMAX,true,10,4,8,0.003,1700-1709,300,100,0.999000,0.990000,1.000000,12.569354,47.500000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_y_bucket_sweep,QRMAX,false,10,2,8,0.003,1700-1709,300,100,0.166000,0.000000,0.970000,11.817645,75.000000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_y_bucket_sweep,QRMAX,true,10,2,8,0.003,1700-1709,300,100,0.952000,0.520000,1.000000,8.310538,27.777778,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_y_bucket_sweep,QRMAX,false,10,4,8,0.003,1700-1709,300,100,0.106000,0.000000,1.000000,21.680000,100.000000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82
+continuous_corridor_y_bucket_sweep,QRMAX,true,10,4,8,0.003,1700-1709,300,100,0.999000,0.990000,1.000000,12.569354,47.500000,local sweep with multiagent-rl-rm commit 79ba46fd0add6040ee933f1eca93584bcd4ebc82

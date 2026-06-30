@@ -4,9 +4,9 @@
     "package": "multiagent-rl-rm",
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
-    "commit": "753a19d59097bae90433c561046b1ae917256907",
+    "commit": "79ba46fd0add6040ee933f1eca93584bcd4ebc82",
     "environment": "multiagent_rlrm.environments.continuous_line",
-    "note": "Pinned to the commit that adds BucketStateEncoder and the continuous-line Bucket QR-MAX experiment."
+    "note": "Pinned to the commit that includes BucketStateEncoder and the continuous Bucket QR-MAX experiments."
   },
   "defaults": {
     "seeds": [
