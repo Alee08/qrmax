@@ -1,7 +1,7 @@
 # Reproducibility
 
 This repository is the reproducibility package for the QR-MAX IJCAI experiments.
-The implementation is provided by the pinned `multiagent-rl-rm` release tag in
+The implementation is provided by the pinned `multiagent-rl-rm` commit in
 `requirements.txt`; this repository keeps the experiment matrices, launchers,
 and post-processing scripts.
 
@@ -19,12 +19,11 @@ The pinned companion library is:
 
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
-- tag: `v0.3.0-ijcai2026`
-- commit: `fa1f90b5516389aadbecf654deecf9da38823c4b`
+- OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
+- pinned commit: `753a19d59097bae90433c561046b1ae917256907`
 
-Before making this repository public, push that tag to
-`https://github.com/Alee08/multiagent-rl-rm` or publish the matching PyPI
-release and update `requirements.txt` to `multiagent-rl-rm==0.3.0`.
+The pinned commit includes the OfficeWorld IJCAI code and the continuous-line
+Bucket QR-MAX sanity experiment.
 
 ## Sanity Checks
 
@@ -44,6 +43,18 @@ Run the smoke check:
 
 ```bash
 python scripts/reproduce_officeworld.py --suite smoke
+```
+
+Validate the continuous-line suite counts:
+
+```bash
+python scripts/validate_continuous_line_config.py
+```
+
+Run the continuous-line smoke check:
+
+```bash
+python scripts/reproduce_continuous_line.py --suite continuous_line_smoke
 ```
 
 ## Experiment Suites
@@ -70,6 +81,18 @@ Run the full encoded OfficeWorld sweep:
 
 ```bash
 python scripts/reproduce_officeworld.py --suite officeworld_discrete
+```
+
+Run the continuous-line Bucket QR-MAX event-ablation suite:
+
+```bash
+python scripts/reproduce_continuous_line.py --suite bucket_event_ablation
+```
+
+Run the continuous-line algorithm comparison:
+
+```bash
+python scripts/reproduce_continuous_line.py --suite continuous_algorithm_comparison
 ```
 
 Use filters for partial reruns:

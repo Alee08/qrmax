@@ -37,7 +37,7 @@ def _prepare_output_paths(office_main) -> None:
     (PROJECT_ROOT / "results").mkdir(exist_ok=True)
 
     # The upstream runner uses inspect.getsourcefile(...) to decide where to put
-    # train/test CSVs. Point it at this artifact so outputs stay in qrmax/results.
+    # train/test CSVs. Point it at this repo so outputs stay in qrmax/results.
     office_main.inspect.getsourcefile = lambda _obj: str(PROJECT_ROOT / "office_main.py")
 
 

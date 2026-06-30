@@ -1,5 +1,5 @@
 {
-  "artifact": "qrmax-ijcai-officeworld",
+  "name": "qrmax-ijcai-officeworld",
   "paper": {
     "title": "Model-Based Reinforcement Learning in Discrete-Action Non-Markovian Reward Decision Processes",
     "arxiv": "https://arxiv.org/abs/2512.14617"
@@ -9,9 +9,10 @@
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
     "tag": "v0.3.0-ijcai2026",
-    "commit": "fa1f90b5516389aadbecf654deecf9da38823c4b",
+    "tag_commit": "fa1f90b5516389aadbecf654deecf9da38823c4b",
+    "commit": "753a19d59097bae90433c561046b1ae917256907",
     "environment": "multiagent_rlrm.environments.office_world",
-    "note": "Pinned to the annotated IJCAI artifact tag."
+    "note": "OfficeWorld settings align with the IJCAI tag; the repository pin uses a later commit that also adds continuous-line Bucket QR-MAX checks."
   },
   "defaults": {
     "gamma": 0.9,
@@ -125,7 +126,7 @@
       ]
     },
     "officeworld_discrete": {
-      "description": "Full OfficeWorld sweep encoded for the artifact.",
+      "description": "Full OfficeWorld sweep encoded for this repository.",
       "expected_runs": 2100,
       "steps": 10000000,
       "stochastic": true,

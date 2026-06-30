@@ -1,0 +1,100 @@
+{
+  "name": "qrmax-continuous-line-bucket",
+  "library": {
+    "package": "multiagent-rl-rm",
+    "repository": "https://github.com/Alee08/multiagent-rl-rm",
+    "package_version": "0.3.0",
+    "commit": "753a19d59097bae90433c561046b1ae917256907",
+    "environment": "multiagent_rlrm.environments.continuous_line",
+    "note": "Pinned to the commit that adds BucketStateEncoder and the continuous-line Bucket QR-MAX experiment."
+  },
+  "defaults": {
+    "seeds": [
+      1500, 1501, 1502, 1503, 1504,
+      1505, 1506, 1507, 1508, 1509,
+      1510, 1511, 1512, 1513, 1514,
+      1515, 1516, 1517, 1518, 1519
+    ],
+    "train_episodes": 300,
+    "eval_episodes": 100,
+    "buckets": [10],
+    "thresholds": [8],
+    "noise_std": [0.005]
+  },
+  "suites": {
+    "continuous_line_smoke": {
+      "description": "Fast sanity check for event-aware Bucket QR-MAX on the continuous-line task.",
+      "expected_runs": 1,
+      "seeds": [1500],
+      "train_episodes": 80,
+      "eval_episodes": 20,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [true],
+          "buckets": [10],
+          "thresholds": [8],
+          "noise_std": [0.005]
+        }
+      ]
+    },
+    "bucket_event_ablation": {
+      "description": "QR-MAX ablation comparing naive buckets with event-aware buckets.",
+      "expected_runs": 2,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets": [10],
+          "thresholds": [8],
+          "noise_std": [0.005]
+        }
+      ]
+    },
+    "continuous_algorithm_comparison": {
+      "description": "Compare QR-MAX, Q-learning, and R-MAX on the same bucketized continuous-line task.",
+      "expected_runs": 6,
+      "seeds": [
+        1600, 1601, 1602, 1603, 1604,
+        1605, 1606, 1607, 1608, 1609,
+        1610, 1611, 1612, 1613, 1614,
+        1615, 1616, 1617, 1618, 1619
+      ],
+      "runs": [
+        {
+          "algorithms": ["QRMAX", "QL", "RMAX"],
+          "event_aware": [false, true],
+          "buckets": [10],
+          "thresholds": [8],
+          "noise_std": [0.005]
+        }
+      ]
+    },
+    "continuous_bucket_sweep": {
+      "description": "Sweep bucket granularity for naive and event-aware QR-MAX.",
+      "expected_runs": 6,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets": [5, 10, 20],
+          "thresholds": [8],
+          "noise_std": [0.005]
+        }
+      ]
+    },
+    "continuous_noise_sweep": {
+      "description": "Sweep transition noise for naive and event-aware QR-MAX.",
+      "expected_runs": 8,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets": [10],
+          "thresholds": [8],
+          "noise_std": [0.0, 0.005, 0.01, 0.02]
+        }
+      ]
+    }
+  }
+}

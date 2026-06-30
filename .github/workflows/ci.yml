@@ -16,5 +16,9 @@ jobs:
         run: python -m py_compile scripts/*.py
       - name: Validate suite counts
         run: python scripts/validate_config.py
+      - name: Validate continuous-line suite counts
+        run: python scripts/validate_continuous_line_config.py
       - name: Dry-run smoke suite
         run: python scripts/reproduce_officeworld.py --suite smoke --dry-run
+      - name: Dry-run continuous-line smoke suite
+        run: python scripts/reproduce_continuous_line.py --suite continuous_line_smoke --dry-run

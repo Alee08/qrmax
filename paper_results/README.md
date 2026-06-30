@@ -13,6 +13,8 @@ Included reference data:
 - `table6_officeworld_steps.csv`: Table 6 values reported in the paper,
   "Average training steps to find a policy that produces results
   indistinguishable from VI optimal solution", mean over 10 random seeds.
+- `continuous_line_bucket_qrmax_reference.csv`: reference sanity-check sweeps
+  for the continuous-line Bucket QR-MAX experiment.
 
 Included figures:
 
