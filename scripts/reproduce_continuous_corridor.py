@@ -35,6 +35,10 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--buckets-y", nargs="+", type=int, default=None)
     parser.add_argument("--thresholds", nargs="+", type=int, default=None)
     parser.add_argument("--noise-std", nargs="+", type=float, default=None)
+    parser.add_argument("--reset-x-low", nargs="+", type=float, default=None)
+    parser.add_argument("--reset-x-high", nargs="+", type=float, default=None)
+    parser.add_argument("--reset-y-low", nargs="+", type=float, default=None)
+    parser.add_argument("--reset-y-high", nargs="+", type=float, default=None)
     parser.add_argument("--seeds", nargs="+", type=int, default=None)
     parser.add_argument("--train-episodes", type=int, default=None)
     parser.add_argument("--eval-episodes", type=int, default=None)
@@ -94,6 +98,22 @@ def _iter_jobs(config: dict, suite_name: str, overrides: argparse.Namespace):
             overrides.noise_std,
             group.get("noise_std", defaults.get("noise_std", [0.003])),
         )
+        reset_x_low_values = _selected(
+            overrides.reset_x_low,
+            group.get("reset_x_low", defaults.get("reset_x_low", [0.45])),
+        )
+        reset_x_high_values = _selected(
+            overrides.reset_x_high,
+            group.get("reset_x_high", defaults.get("reset_x_high", [0.55])),
+        )
+        reset_y_low_values = _selected(
+            overrides.reset_y_low,
+            group.get("reset_y_low", defaults.get("reset_y_low", [0.42])),
+        )
+        reset_y_high_values = _selected(
+            overrides.reset_y_high,
+            group.get("reset_y_high", defaults.get("reset_y_high", [0.58])),
+        )
 
         for algorithm in algorithms:
             for event_aware in event_aware_values:
@@ -101,17 +121,25 @@ def _iter_jobs(config: dict, suite_name: str, overrides: argparse.Namespace):
                     for buckets_y in buckets_y_values:
                         for threshold in threshold_values:
                             for noise_std in noise_values:
-                                yield {
-                                    "algorithm": algorithm,
-                                    "include_event_label": event_aware,
-                                    "buckets_x": buckets_x,
-                                    "buckets_y": buckets_y,
-                                    "threshold": threshold,
-                                    "noise_std": noise_std,
-                                    "seeds": seeds,
-                                    "train_episodes": train_episodes,
-                                    "eval_episodes": eval_episodes,
-                                }
+                                for reset_x_low in reset_x_low_values:
+                                    for reset_x_high in reset_x_high_values:
+                                        for reset_y_low in reset_y_low_values:
+                                            for reset_y_high in reset_y_high_values:
+                                                yield {
+                                                    "algorithm": algorithm,
+                                                    "include_event_label": event_aware,
+                                                    "buckets_x": buckets_x,
+                                                    "buckets_y": buckets_y,
+                                                    "threshold": threshold,
+                                                    "noise_std": noise_std,
+                                                    "reset_x_low": reset_x_low,
+                                                    "reset_x_high": reset_x_high,
+                                                    "reset_y_low": reset_y_low,
+                                                    "reset_y_high": reset_y_high,
+                                                    "seeds": seeds,
+                                                    "train_episodes": train_episodes,
+                                                    "eval_episodes": eval_episodes,
+                                                }
 
 
 def _command_for_job(job):
@@ -129,6 +157,14 @@ def _command_for_job(job):
         str(job["threshold"]),
         "--noise-std",
         str(job["noise_std"]),
+        "--reset-x-low",
+        str(job["reset_x_low"]),
+        "--reset-x-high",
+        str(job["reset_x_high"]),
+        "--reset-y-low",
+        str(job["reset_y_low"]),
+        "--reset-y-high",
+        str(job["reset_y_high"]),
         "--train-episodes",
         str(job["train_episodes"]),
         "--eval-episodes",
@@ -152,6 +188,10 @@ def _row_from_summary(suite_name: str, job: dict, summary: dict) -> dict:
         "buckets_y": job["buckets_y"],
         "threshold": job["threshold"],
         "noise_std": job["noise_std"],
+        "reset_x_low": job["reset_x_low"],
+        "reset_x_high": job["reset_x_high"],
+        "reset_y_low": job["reset_y_low"],
+        "reset_y_high": job["reset_y_high"],
         "seeds": " ".join(str(seed) for seed in job["seeds"]),
         "train_episodes": job["train_episodes"],
         "eval_episodes": job["eval_episodes"],

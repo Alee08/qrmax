@@ -4,7 +4,7 @@
     "package": "multiagent-rl-rm",
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
-    "commit": "79ba46fd0add6040ee933f1eca93584bcd4ebc82",
+    "commit": "99b3fe3b0060bbd7e7f07eb3ef99930975d937f4",
     "environment": "multiagent_rlrm.environments.continuous_corridor",
     "note": "Pinned to the commit that adds the 2D continuous-corridor Bucket QR-MAX experiment."
   },
@@ -18,7 +18,11 @@
     "buckets_x": [10],
     "buckets_y": [4],
     "thresholds": [8],
-    "noise_std": [0.003]
+    "noise_std": [0.003],
+    "reset_x_low": [0.45],
+    "reset_x_high": [0.55],
+    "reset_y_low": [0.42],
+    "reset_y_high": [0.58]
   },
   "suites": {
     "continuous_corridor_smoke": {
@@ -34,7 +38,9 @@
           "buckets_x": [10],
           "buckets_y": [4],
           "thresholds": [8],
-          "noise_std": [0.003]
+          "noise_std": [0.003],
+          "reset_y_low": [0.42],
+          "reset_y_high": [0.58]
         }
       ]
     },
@@ -48,7 +54,9 @@
           "buckets_x": [10],
           "buckets_y": [4],
           "thresholds": [8],
-          "noise_std": [0.003]
+          "noise_std": [0.003],
+          "reset_y_low": [0.42],
+          "reset_y_high": [0.58]
         }
       ]
     },
@@ -62,7 +70,9 @@
           "buckets_x": [10],
           "buckets_y": [4],
           "thresholds": [8],
-          "noise_std": [0.003]
+          "noise_std": [0.003],
+          "reset_y_low": [0.42],
+          "reset_y_high": [0.58]
         }
       ]
     },
@@ -76,7 +86,50 @@
           "buckets_x": [10],
           "buckets_y": [2, 4],
           "thresholds": [8],
-          "noise_std": [0.003]
+          "noise_std": [0.003],
+          "reset_y_low": [0.42],
+          "reset_y_high": [0.58]
+        }
+      ]
+    },
+    "continuous_corridor_hard_event_ablation": {
+      "description": "Harder corridor with wide vertical reset and higher transition noise.",
+      "expected_runs": 2,
+      "seeds": [1810, 1811, 1812, 1813, 1814],
+      "train_episodes": 400,
+      "eval_episodes": 100,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [false, true],
+          "buckets_x": [10],
+          "buckets_y": [6],
+          "thresholds": [18],
+          "noise_std": [0.006],
+          "reset_y_low": [0.10],
+          "reset_y_high": [0.90]
+        }
+      ]
+    },
+    "continuous_corridor_hard_algorithm_comparison": {
+      "description": "Compare algorithms on the hard event-aware corridor setting.",
+      "expected_runs": 3,
+      "seeds": [
+        1810, 1811, 1812, 1813, 1814,
+        1815, 1816, 1817, 1818, 1819
+      ],
+      "train_episodes": 400,
+      "eval_episodes": 100,
+      "runs": [
+        {
+          "algorithms": ["QL", "RMAX", "QRMAX"],
+          "event_aware": [true],
+          "buckets_x": [10],
+          "buckets_y": [6],
+          "thresholds": [18],
+          "noise_std": [0.006],
+          "reset_y_low": [0.10],
+          "reset_y_high": [0.90]
         }
       ]
     }

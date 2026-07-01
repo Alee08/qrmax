@@ -22,7 +22,7 @@ This repository is pinned to the companion-library commit:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `79ba46fd0add6040ee933f1eca93584bcd4ebc82`
+- pinned commit: `99b3fe3b0060bbd7e7f07eb3ef99930975d937f4`
 
 The default `requirements.txt` installs the companion library from this frozen
 commit. The pinned commit includes the OfficeWorld IJCAI code and the
@@ -151,11 +151,19 @@ Suites are defined in `configs/continuous_corridor_bucket_qrmax.json`.
 | `bucket_event_ablation` | 2 | Compare plain buckets with event-aware buckets for QR-MAX. |
 | `continuous_corridor_algorithm_comparison` | 3 | Compare Q-learning, R-MAX, and QR-MAX. |
 | `continuous_corridor_y_bucket_sweep` | 4 | Sweep vertical bucket granularity for QR-MAX. |
+| `continuous_corridor_hard_event_ablation` | 2 | Hard reset/noise event-ablation. |
+| `continuous_corridor_hard_algorithm_comparison` | 3 | Hard reset/noise algorithm comparison. |
 
 Run the QR-MAX corridor event-ablation suite:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite bucket_event_ablation
+```
+
+Run the hard QR-MAX corridor event-ablation suite:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_hard_event_ablation
 ```
 
 The included reference sweep is

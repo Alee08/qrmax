@@ -20,7 +20,7 @@ The pinned companion library is:
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `79ba46fd0add6040ee933f1eca93584bcd4ebc82`
+- pinned commit: `99b3fe3b0060bbd7e7f07eb3ef99930975d937f4`
 
 The pinned commit includes the OfficeWorld IJCAI code and the continuous-line
 and continuous-corridor Bucket QR-MAX checks.
@@ -117,6 +117,12 @@ Run the continuous-corridor algorithm comparison:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_algorithm_comparison
+```
+
+Run the hard continuous-corridor event-ablation suite:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_hard_event_ablation
 ```
 
 Use filters for partial reruns:
