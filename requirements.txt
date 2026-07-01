@@ -1,3 +1,3 @@
 # Frozen companion library for the QR-MAX reproducibility package.
 # Includes the OfficeWorld IJCAI code and continuous Bucket QR-MAX checks.
-multiagent-rl-rm @ git+https://github.com/Alee08/multiagent-rl-rm.git@99b3fe3b0060bbd7e7f07eb3ef99930975d937f4
+multiagent-rl-rm @ git+https://github.com/Alee08/multiagent-rl-rm.git@ef62e9c44489aabd8f013c9a8bc128bea3114b0d

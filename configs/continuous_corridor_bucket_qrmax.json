@@ -4,9 +4,9 @@
     "package": "multiagent-rl-rm",
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
-    "commit": "99b3fe3b0060bbd7e7f07eb3ef99930975d937f4",
+    "commit": "ef62e9c44489aabd8f013c9a8bc128bea3114b0d",
     "environment": "multiagent_rlrm.environments.continuous_corridor",
-    "note": "Pinned to the commit that adds the 2D continuous-corridor Bucket QR-MAX experiment."
+    "note": "Pinned to the commit that adds event-aligned and transition-probed Bucket QR-MAX modes."
   },
   "defaults": {
     "seeds": [
@@ -22,7 +22,11 @@
     "reset_x_low": [0.45],
     "reset_x_high": [0.55],
     "reset_y_low": [0.42],
-    "reset_y_high": [0.58]
+    "reset_y_high": [0.58],
+    "horizon": [80],
+    "sequence": ["AB"],
+    "layout": ["open"],
+    "bucket_mode": ["uniform"]
   },
   "suites": {
     "continuous_corridor_smoke": {
@@ -61,11 +65,11 @@
       ]
     },
     "continuous_corridor_algorithm_comparison": {
-      "description": "Compare Q-learning, R-MAX, and QR-MAX on the event-aware 2D corridor task.",
-      "expected_runs": 3,
+      "description": "Compare Q-learning, QRM, R-MAX, and QR-MAX on the event-aware 2D corridor task.",
+      "expected_runs": 4,
       "runs": [
         {
-          "algorithms": ["QL", "RMAX", "QRMAX"],
+          "algorithms": ["QL", "QRM", "RMAX", "QRMAX"],
           "event_aware": [true],
           "buckets_x": [10],
           "buckets_y": [4],
@@ -112,8 +116,8 @@
       ]
     },
     "continuous_corridor_hard_algorithm_comparison": {
-      "description": "Compare algorithms on the hard event-aware corridor setting.",
-      "expected_runs": 3,
+      "description": "Compare algorithms on the hard event-aligned corridor setting.",
+      "expected_runs": 4,
       "seeds": [
         1810, 1811, 1812, 1813, 1814,
         1815, 1816, 1817, 1818, 1819
@@ -122,14 +126,86 @@
       "eval_episodes": 100,
       "runs": [
         {
-          "algorithms": ["QL", "RMAX", "QRMAX"],
+          "algorithms": ["QL", "QRM", "RMAX", "QRMAX"],
           "event_aware": [true],
+          "bucket_mode": ["event-aligned"],
           "buckets_x": [10],
           "buckets_y": [6],
           "thresholds": [18],
           "noise_std": [0.006],
           "reset_y_low": [0.10],
           "reset_y_high": [0.90]
+        }
+      ]
+    },
+    "continuous_corridor_bottleneck_smoke": {
+      "description": "Deterministic bottleneck sanity check with the reset inside the passage.",
+      "expected_runs": 1,
+      "seeds": [1850, 1851, 1852, 1853, 1854],
+      "train_episodes": 300,
+      "eval_episodes": 50,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [true],
+          "sequence": ["AB"],
+          "layout": ["bottleneck"],
+          "bucket_mode": ["uniform"],
+          "buckets_x": [10],
+          "buckets_y": [4],
+          "thresholds": [8],
+          "noise_std": [0.0],
+          "reset_x_low": [0.40],
+          "reset_x_high": [0.46],
+          "reset_y_low": [0.42],
+          "reset_y_high": [0.58],
+          "horizon": [100]
+        }
+      ]
+    },
+    "continuous_corridor_bottleneck_transition_probed": {
+      "description": "Noisy bottleneck solved by transition-probed bucket refinement.",
+      "expected_runs": 1,
+      "seeds": [1850, 1851, 1852, 1853, 1854],
+      "train_episodes": 800,
+      "eval_episodes": 50,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [true],
+          "sequence": ["AB"],
+          "layout": ["bottleneck"],
+          "bucket_mode": ["transition-probed"],
+          "buckets_x": [12],
+          "buckets_y": [8],
+          "thresholds": [10],
+          "noise_std": [0.003],
+          "reset_x_low": [0.40],
+          "reset_x_high": [0.46],
+          "reset_y_low": [0.20],
+          "reset_y_high": [0.80],
+          "horizon": [120]
+        }
+      ]
+    },
+    "continuous_corridor_abc_algorithm_comparison": {
+      "description": "Longer A-B-C Reward Machine comparison with event-aligned buckets.",
+      "expected_runs": 3,
+      "seeds": [1900, 1901, 1902, 1903, 1904],
+      "train_episodes": 250,
+      "eval_episodes": 50,
+      "runs": [
+        {
+          "algorithms": ["QL", "QRM", "QRMAX"],
+          "event_aware": [true],
+          "sequence": ["ABC"],
+          "layout": ["open"],
+          "bucket_mode": ["event-aligned"],
+          "buckets_x": [12],
+          "buckets_y": [4],
+          "thresholds": [10],
+          "noise_std": [0.003],
+          "horizon": [120]
         }
       ]
     }

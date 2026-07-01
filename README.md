@@ -22,11 +22,12 @@ This repository is pinned to the companion-library commit:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `99b3fe3b0060bbd7e7f07eb3ef99930975d937f4`
+- pinned commit: `ef62e9c44489aabd8f013c9a8bc128bea3114b0d`
 
 The default `requirements.txt` installs the companion library from this frozen
-commit. The pinned commit includes the OfficeWorld IJCAI code and the
-continuous-line and continuous-corridor Bucket QR-MAX checks.
+commit. The pinned commit includes the OfficeWorld IJCAI code, the
+continuous-line checks, and the continuous-corridor event-aligned and
+transition-probed Bucket QR-MAX modes.
 
 ## Install
 
@@ -149,10 +150,13 @@ Suites are defined in `configs/continuous_corridor_bucket_qrmax.json`.
 | --- | ---: | --- |
 | `continuous_corridor_smoke` | 1 | Fast event-aware QR-MAX sanity check. |
 | `bucket_event_ablation` | 2 | Compare plain buckets with event-aware buckets for QR-MAX. |
-| `continuous_corridor_algorithm_comparison` | 3 | Compare Q-learning, R-MAX, and QR-MAX. |
+| `continuous_corridor_algorithm_comparison` | 4 | Compare Q-learning, QRM, R-MAX, and QR-MAX. |
 | `continuous_corridor_y_bucket_sweep` | 4 | Sweep vertical bucket granularity for QR-MAX. |
 | `continuous_corridor_hard_event_ablation` | 2 | Hard reset/noise event-ablation. |
-| `continuous_corridor_hard_algorithm_comparison` | 3 | Hard reset/noise algorithm comparison. |
+| `continuous_corridor_hard_algorithm_comparison` | 4 | Hard reset/noise algorithm comparison. |
+| `continuous_corridor_bottleneck_smoke` | 1 | Deterministic bottleneck sanity check. |
+| `continuous_corridor_bottleneck_transition_probed` | 1 | Noisy bottleneck solved with transition-probed buckets. |
+| `continuous_corridor_abc_algorithm_comparison` | 3 | A-B-C sequence comparison with event-aligned buckets. |
 
 Run the QR-MAX corridor event-ablation suite:
 
@@ -166,8 +170,34 @@ Run the hard QR-MAX corridor event-ablation suite:
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_hard_event_ablation
 ```
 
+Run the A-B-C stress comparison:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_abc_algorithm_comparison
+```
+
+Run the noisy bottleneck transition-probed suite:
+
+```bash
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_bottleneck_transition_probed
+```
+
 The included reference sweep is
 `paper_results/continuous_corridor_bucket_qrmax_reference.csv`.
+
+### Continuous-Corridor Diagnostics
+
+The continuous-corridor reference CSV includes controlled stress cases. The
+hard reset/noise and A-B-C settings use event-aligned buckets, which add bucket
+edges at RM event boundaries. The noisy bottleneck setting uses
+transition-probed buckets: the runner probes one-step transition outcomes,
+refines recurring dynamics boundaries by bisection, and trains QR-MAX on the
+resulting finite abstraction.
+
+These modes avoid relying on a fixed uniform grid. QRM is included as a
+tabular Reward Machine baseline; deep baselines such as DQN are not part of the
+pinned reproducibility package because they require a separate neural training
+stack and tuning protocol.
 
 ## Outputs
 

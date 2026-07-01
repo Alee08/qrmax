@@ -15,8 +15,9 @@ Included reference data:
   indistinguishable from VI optimal solution", mean over 10 random seeds.
 - `continuous_line_bucket_qrmax_reference.csv`: reference sanity-check sweeps
   for the continuous-line Bucket QR-MAX experiment.
-- `continuous_corridor_bucket_qrmax_reference.csv`: reference sanity-check
-  sweeps for the 2D continuous-corridor Bucket QR-MAX experiment.
+- `continuous_corridor_bucket_qrmax_reference.csv`: reference sweeps for the
+  2D continuous-corridor Bucket QR-MAX experiment, including event-aligned
+  A-B-C, transition-probed bottleneck, and QRM comparison suites.
 
 Included figures:
 

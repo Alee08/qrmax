@@ -31,6 +31,9 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--event-aware", choices=["true", "false"], nargs="+", default=None
     )
+    parser.add_argument("--sequence", nargs="+", default=None)
+    parser.add_argument("--layout", nargs="+", default=None)
+    parser.add_argument("--bucket-mode", nargs="+", default=None)
     parser.add_argument("--buckets-x", nargs="+", type=int, default=None)
     parser.add_argument("--buckets-y", nargs="+", type=int, default=None)
     parser.add_argument("--thresholds", nargs="+", type=int, default=None)
@@ -39,6 +42,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--reset-x-high", nargs="+", type=float, default=None)
     parser.add_argument("--reset-y-low", nargs="+", type=float, default=None)
     parser.add_argument("--reset-y-high", nargs="+", type=float, default=None)
+    parser.add_argument("--horizon", nargs="+", type=int, default=None)
     parser.add_argument("--seeds", nargs="+", type=int, default=None)
     parser.add_argument("--train-episodes", type=int, default=None)
     parser.add_argument("--eval-episodes", type=int, default=None)
@@ -82,6 +86,18 @@ def _iter_jobs(config: dict, suite_name: str, overrides: argparse.Namespace):
     for group in suite.get("runs", []):
         algorithms = _selected(overrides.algorithms, group.get("algorithms", []))
         event_aware_values = _selected(event_filter, group.get("event_aware", []))
+        sequence_values = _selected(
+            overrides.sequence,
+            group.get("sequence", defaults.get("sequence", ["AB"])),
+        )
+        layout_values = _selected(
+            overrides.layout,
+            group.get("layout", defaults.get("layout", ["open"])),
+        )
+        bucket_mode_values = _selected(
+            overrides.bucket_mode,
+            group.get("bucket_mode", defaults.get("bucket_mode", ["uniform"])),
+        )
         buckets_x_values = _selected(
             overrides.buckets_x,
             group.get("buckets_x", defaults.get("buckets_x", [10])),
@@ -114,32 +130,44 @@ def _iter_jobs(config: dict, suite_name: str, overrides: argparse.Namespace):
             overrides.reset_y_high,
             group.get("reset_y_high", defaults.get("reset_y_high", [0.58])),
         )
+        horizon_values = _selected(
+            overrides.horizon,
+            group.get("horizon", defaults.get("horizon", [80])),
+        )
 
         for algorithm in algorithms:
             for event_aware in event_aware_values:
-                for buckets_x in buckets_x_values:
-                    for buckets_y in buckets_y_values:
-                        for threshold in threshold_values:
-                            for noise_std in noise_values:
-                                for reset_x_low in reset_x_low_values:
-                                    for reset_x_high in reset_x_high_values:
-                                        for reset_y_low in reset_y_low_values:
-                                            for reset_y_high in reset_y_high_values:
-                                                yield {
-                                                    "algorithm": algorithm,
-                                                    "include_event_label": event_aware,
-                                                    "buckets_x": buckets_x,
-                                                    "buckets_y": buckets_y,
-                                                    "threshold": threshold,
-                                                    "noise_std": noise_std,
-                                                    "reset_x_low": reset_x_low,
-                                                    "reset_x_high": reset_x_high,
-                                                    "reset_y_low": reset_y_low,
-                                                    "reset_y_high": reset_y_high,
-                                                    "seeds": seeds,
-                                                    "train_episodes": train_episodes,
-                                                    "eval_episodes": eval_episodes,
-                                                }
+                for sequence in sequence_values:
+                    for layout in layout_values:
+                        for bucket_mode in bucket_mode_values:
+                            for buckets_x in buckets_x_values:
+                                for buckets_y in buckets_y_values:
+                                    for threshold in threshold_values:
+                                        for noise_std in noise_values:
+                                            for reset_x_low in reset_x_low_values:
+                                                for reset_x_high in reset_x_high_values:
+                                                    for reset_y_low in reset_y_low_values:
+                                                        for reset_y_high in reset_y_high_values:
+                                                            for horizon in horizon_values:
+                                                                yield {
+                                                                    "algorithm": algorithm,
+                                                                    "include_event_label": event_aware,
+                                                                    "event_sequence": sequence,
+                                                                    "layout": layout,
+                                                                    "bucket_mode": bucket_mode,
+                                                                    "buckets_x": buckets_x,
+                                                                    "buckets_y": buckets_y,
+                                                                    "threshold": threshold,
+                                                                    "noise_std": noise_std,
+                                                                    "reset_x_low": reset_x_low,
+                                                                    "reset_x_high": reset_x_high,
+                                                                    "reset_y_low": reset_y_low,
+                                                                    "reset_y_high": reset_y_high,
+                                                                    "horizon": horizon,
+                                                                    "seeds": seeds,
+                                                                    "train_episodes": train_episodes,
+                                                                    "eval_episodes": eval_episodes,
+                                                                }
 
 
 def _command_for_job(job):
@@ -149,6 +177,12 @@ def _command_for_job(job):
         "multiagent_rlrm.environments.continuous_corridor.bucket_qrmax_experiment",
         "--algorithm",
         job["algorithm"],
+        "--sequence",
+        job["event_sequence"],
+        "--layout",
+        job["layout"],
+        "--bucket-mode",
+        job["bucket_mode"],
         "--buckets-x",
         str(job["buckets_x"]),
         "--buckets-y",
@@ -165,6 +199,8 @@ def _command_for_job(job):
         str(job["reset_y_low"]),
         "--reset-y-high",
         str(job["reset_y_high"]),
+        "--horizon",
+        str(job["horizon"]),
         "--train-episodes",
         str(job["train_episodes"]),
         "--eval-episodes",
@@ -177,13 +213,16 @@ def _command_for_job(job):
     return cmd
 
 
-def _row_from_summary(suite_name: str, job: dict, summary: dict) -> dict:
+def _row_from_summary(suite_name: str, job: dict, summary: dict, source: str) -> dict:
     avg_len = summary["average_length_mean"]
     first_perfect = summary["first_perfect_eval_episode_mean"]
     return {
         "suite": suite_name,
         "algorithm": job["algorithm"],
         "event_aware": job["include_event_label"],
+        "sequence": job["event_sequence"],
+        "layout": job["layout"],
+        "bucket_mode": job["bucket_mode"],
         "buckets_x": job["buckets_x"],
         "buckets_y": job["buckets_y"],
         "threshold": job["threshold"],
@@ -192,6 +231,7 @@ def _row_from_summary(suite_name: str, job: dict, summary: dict) -> dict:
         "reset_x_high": job["reset_x_high"],
         "reset_y_low": job["reset_y_low"],
         "reset_y_high": job["reset_y_high"],
+        "horizon": job["horizon"],
         "seeds": " ".join(str(seed) for seed in job["seeds"]),
         "train_episodes": job["train_episodes"],
         "eval_episodes": job["eval_episodes"],
@@ -202,12 +242,19 @@ def _row_from_summary(suite_name: str, job: dict, summary: dict) -> dict:
         "first_perfect_eval_episode_mean": (
             "" if first_perfect is None else f"{first_perfect:.6f}"
         ),
+        "training_successes_mean": f"{summary['training_successes_mean']:.6f}",
+        "event_count_means": json.dumps(
+            summary["event_count_means"], sort_keys=True
+        ),
+        "source": source,
     }
 
 
 def main() -> None:
     args = _parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    commit = config.get("library", {}).get("commit", "unknown")
+    source = f"local sweep with multiagent-rl-rm commit {commit}"
 
     rows = []
     count = 0
@@ -225,7 +272,7 @@ def main() -> None:
                     bucket_qrmax_experiment.run_bucket_qrmax_sweep
                 )
             summary = run_bucket_qrmax_sweep(**job)
-            rows.append(_row_from_summary(args.suite, job, summary))
+            rows.append(_row_from_summary(args.suite, job, summary, source))
         if args.max_runs is not None and count >= args.max_runs:
             break
 

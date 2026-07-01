@@ -22,6 +22,9 @@ def _empty_overrides() -> SimpleNamespace:
     return SimpleNamespace(
         algorithms=None,
         event_aware=None,
+        sequence=None,
+        layout=None,
+        bucket_mode=None,
         buckets_x=None,
         buckets_y=None,
         thresholds=None,
@@ -30,6 +33,7 @@ def _empty_overrides() -> SimpleNamespace:
         reset_x_high=None,
         reset_y_low=None,
         reset_y_high=None,
+        horizon=None,
         seeds=None,
         train_episodes=None,
         eval_episodes=None,

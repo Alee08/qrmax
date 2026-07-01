@@ -10,7 +10,7 @@
     "package_version": "0.3.0",
     "tag": "v0.3.0-ijcai2026",
     "tag_commit": "fa1f90b5516389aadbecf654deecf9da38823c4b",
-    "commit": "99b3fe3b0060bbd7e7f07eb3ef99930975d937f4",
+    "commit": "ef62e9c44489aabd8f013c9a8bc128bea3114b0d",
     "environment": "multiagent_rlrm.environments.office_world",
     "note": "OfficeWorld settings align with the IJCAI tag; the repository pin uses a later commit that also adds continuous Bucket QR-MAX checks."
   },
