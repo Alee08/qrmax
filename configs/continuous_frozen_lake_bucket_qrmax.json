@@ -1,0 +1,85 @@
+{
+  "name": "qrmax-continuous-frozen-lake-bucket",
+  "library": {
+    "package": "multiagent-rl-rm",
+    "repository": "https://github.com/Alee08/multiagent-rl-rm",
+    "package_version": "0.3.0",
+    "commit": "c1c379ce57573f075de7c25e346d665b4475ded3",
+    "environment": "multiagent_rlrm.environments.continuous_frozen_lake",
+    "note": "Pinned to the commit that adds the continuous Frozen Lake Bucket QR-MAX comparison suites."
+  },
+  "defaults": {
+    "seeds": [2000, 2001, 2002, 2003, 2004],
+    "train_episodes": 1200,
+    "eval_episodes": 50,
+    "map": ["map1"],
+    "sequence": ["ABC"],
+    "event_aware": [true],
+    "bucket_mode": ["uniform"],
+    "buckets_x": [10],
+    "buckets_y": [10],
+    "thresholds": [8],
+    "noise_std": [0.0],
+    "slip_probability": [0.0],
+    "step_size": [0.65],
+    "horizon": [180],
+    "start_x": [5],
+    "start_y": [0]
+  },
+  "suites": {
+    "continuous_frozen_lake_smoke": {
+      "description": "Fast QR-MAX sanity check on continuous-coordinate Frozen Lake.",
+      "expected_runs": 1,
+      "seeds": [2000],
+      "train_episodes": 250,
+      "eval_episodes": 10,
+      "runs": [
+        {
+          "algorithms": ["QRMAX"],
+          "event_aware": [true],
+          "sequence": ["AB"],
+          "thresholds": [8],
+          "noise_std": [0.0],
+          "slip_probability": [0.0],
+          "horizon": [120]
+        }
+      ]
+    },
+    "continuous_frozen_lake_abc_algorithm_comparison": {
+      "description": "Compare Q-learning, QRM, R-MAX, and QR-MAX on the A-B-C continuous Frozen Lake task.",
+      "expected_runs": 4,
+      "runs": [
+        {
+          "algorithms": ["QL", "QRM", "RMAX", "QRMAX"],
+          "event_aware": [true],
+          "sequence": ["ABC"],
+          "bucket_mode": ["uniform"],
+          "buckets_x": [10],
+          "buckets_y": [10],
+          "thresholds": [8],
+          "noise_std": [0.0],
+          "slip_probability": [0.0],
+          "horizon": [180]
+        }
+      ]
+    },
+    "continuous_frozen_lake_light_noise_comparison": {
+      "description": "Compare Q-learning, QRM, and QR-MAX with light continuous transition noise.",
+      "expected_runs": 3,
+      "runs": [
+        {
+          "algorithms": ["QL", "QRM", "QRMAX"],
+          "event_aware": [true],
+          "sequence": ["ABC"],
+          "bucket_mode": ["uniform"],
+          "buckets_x": [10],
+          "buckets_y": [10],
+          "thresholds": [8],
+          "noise_std": [0.01],
+          "slip_probability": [0.0],
+          "horizon": [180]
+        }
+      ]
+    }
+  }
+}

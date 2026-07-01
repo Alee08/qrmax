@@ -4,7 +4,7 @@
     "package": "multiagent-rl-rm",
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
-    "commit": "ef62e9c44489aabd8f013c9a8bc128bea3114b0d",
+    "commit": "c1c379ce57573f075de7c25e346d665b4475ded3",
     "environment": "multiagent_rlrm.environments.continuous_line",
     "note": "Pinned to the commit that includes BucketStateEncoder and the continuous Bucket QR-MAX experiments."
   },
@@ -38,22 +38,9 @@
         }
       ]
     },
-    "bucket_event_ablation": {
-      "description": "QR-MAX ablation comparing naive buckets with event-aware buckets.",
-      "expected_runs": 2,
-      "runs": [
-        {
-          "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
-          "buckets": [10],
-          "thresholds": [8],
-          "noise_std": [0.005]
-        }
-      ]
-    },
     "continuous_algorithm_comparison": {
       "description": "Compare QR-MAX, Q-learning, and R-MAX on the same bucketized continuous-line task.",
-      "expected_runs": 6,
+      "expected_runs": 3,
       "seeds": [
         1600, 1601, 1602, 1603, 1604,
         1605, 1606, 1607, 1608, 1609,
@@ -63,7 +50,7 @@
       "runs": [
         {
           "algorithms": ["QRMAX", "QL", "RMAX"],
-          "event_aware": [false, true],
+          "event_aware": [true],
           "buckets": [10],
           "thresholds": [8],
           "noise_std": [0.005]
@@ -71,25 +58,25 @@
       ]
     },
     "continuous_bucket_sweep": {
-      "description": "Sweep bucket granularity for naive and event-aware QR-MAX.",
-      "expected_runs": 6,
+      "description": "Sweep successful bucket granularities for event-aware QR-MAX.",
+      "expected_runs": 2,
       "runs": [
         {
           "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
-          "buckets": [5, 10, 20],
+          "event_aware": [true],
+          "buckets": [10, 20],
           "thresholds": [8],
           "noise_std": [0.005]
         }
       ]
     },
     "continuous_noise_sweep": {
-      "description": "Sweep transition noise for naive and event-aware QR-MAX.",
-      "expected_runs": 8,
+      "description": "Sweep transition noise for event-aware QR-MAX.",
+      "expected_runs": 4,
       "runs": [
         {
           "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
+          "event_aware": [true],
           "buckets": [10],
           "thresholds": [8],
           "noise_std": [0.0, 0.005, 0.01, 0.02]

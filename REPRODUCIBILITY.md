@@ -20,11 +20,11 @@ The pinned companion library is:
 - package: `multiagent-rl-rm`
 - version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `ef62e9c44489aabd8f013c9a8bc128bea3114b0d`
+- pinned commit: `c1c379ce57573f075de7c25e346d665b4475ded3`
 
 The pinned commit includes the OfficeWorld IJCAI code, the continuous-line
-checks, and the continuous-corridor event-aligned and transition-probed Bucket
-QR-MAX modes.
+checks, the continuous-corridor event-aligned and transition-probed Bucket
+QR-MAX modes, and the continuous Frozen Lake comparison suites.
 
 ## Sanity Checks
 
@@ -58,6 +58,12 @@ Validate the continuous-corridor suite counts:
 python scripts/validate_continuous_corridor_config.py
 ```
 
+Validate the continuous-FrozenLake suite counts:
+
+```bash
+python scripts/validate_continuous_frozen_lake_config.py
+```
+
 Run the continuous-line smoke check:
 
 ```bash
@@ -68,6 +74,12 @@ Run the continuous-corridor smoke check:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_smoke
+```
+
+Run the continuous-FrozenLake smoke check:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_smoke
 ```
 
 ## Experiment Suites
@@ -96,10 +108,10 @@ Run the full encoded OfficeWorld sweep:
 python scripts/reproduce_officeworld.py --suite officeworld_discrete
 ```
 
-Run the continuous-line Bucket QR-MAX event-ablation suite:
+Run the continuous-line Bucket QR-MAX bucket sweep:
 
 ```bash
-python scripts/reproduce_continuous_line.py --suite bucket_event_ablation
+python scripts/reproduce_continuous_line.py --suite continuous_bucket_sweep
 ```
 
 Run the continuous-line algorithm comparison:
@@ -108,22 +120,10 @@ Run the continuous-line algorithm comparison:
 python scripts/reproduce_continuous_line.py --suite continuous_algorithm_comparison
 ```
 
-Run the continuous-corridor Bucket QR-MAX event-ablation suite:
-
-```bash
-python scripts/reproduce_continuous_corridor.py --suite bucket_event_ablation
-```
-
 Run the continuous-corridor algorithm comparison:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_algorithm_comparison
-```
-
-Run the hard continuous-corridor event-ablation suite:
-
-```bash
-python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_hard_event_ablation
 ```
 
 Run the deterministic bottleneck sanity check:
@@ -142,6 +142,18 @@ Run the A-B-C Reward Machine comparison:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_abc_algorithm_comparison
+```
+
+Run the continuous-FrozenLake A-B-C comparison:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_abc_algorithm_comparison
+```
+
+Run the continuous-FrozenLake light-noise comparison:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_light_noise_comparison
 ```
 
 Use filters for partial reruns:

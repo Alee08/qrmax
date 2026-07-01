@@ -4,7 +4,7 @@
     "package": "multiagent-rl-rm",
     "repository": "https://github.com/Alee08/multiagent-rl-rm",
     "package_version": "0.3.0",
-    "commit": "ef62e9c44489aabd8f013c9a8bc128bea3114b0d",
+    "commit": "c1c379ce57573f075de7c25e346d665b4475ded3",
     "environment": "multiagent_rlrm.environments.continuous_corridor",
     "note": "Pinned to the commit that adds event-aligned and transition-probed Bucket QR-MAX modes."
   },
@@ -48,22 +48,6 @@
         }
       ]
     },
-    "bucket_event_ablation": {
-      "description": "QR-MAX ablation comparing plain buckets with event-aware buckets.",
-      "expected_runs": 2,
-      "runs": [
-        {
-          "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
-          "buckets_x": [10],
-          "buckets_y": [4],
-          "thresholds": [8],
-          "noise_std": [0.003],
-          "reset_y_low": [0.42],
-          "reset_y_high": [0.58]
-        }
-      ]
-    },
     "continuous_corridor_algorithm_comparison": {
       "description": "Compare Q-learning, QRM, R-MAX, and QR-MAX on the event-aware 2D corridor task.",
       "expected_runs": 4,
@@ -77,41 +61,6 @@
           "noise_std": [0.003],
           "reset_y_low": [0.42],
           "reset_y_high": [0.58]
-        }
-      ]
-    },
-    "continuous_corridor_y_bucket_sweep": {
-      "description": "Sweep vertical bucket granularity for plain and event-aware QR-MAX.",
-      "expected_runs": 4,
-      "runs": [
-        {
-          "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
-          "buckets_x": [10],
-          "buckets_y": [2, 4],
-          "thresholds": [8],
-          "noise_std": [0.003],
-          "reset_y_low": [0.42],
-          "reset_y_high": [0.58]
-        }
-      ]
-    },
-    "continuous_corridor_hard_event_ablation": {
-      "description": "Harder corridor with wide vertical reset and higher transition noise.",
-      "expected_runs": 2,
-      "seeds": [1810, 1811, 1812, 1813, 1814],
-      "train_episodes": 400,
-      "eval_episodes": 100,
-      "runs": [
-        {
-          "algorithms": ["QRMAX"],
-          "event_aware": [false, true],
-          "buckets_x": [10],
-          "buckets_y": [6],
-          "thresholds": [18],
-          "noise_std": [0.006],
-          "reset_y_low": [0.10],
-          "reset_y_high": [0.90]
         }
       ]
     },

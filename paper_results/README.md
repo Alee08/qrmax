@@ -18,6 +18,9 @@ Included reference data:
 - `continuous_corridor_bucket_qrmax_reference.csv`: reference sweeps for the
   2D continuous-corridor Bucket QR-MAX experiment, including event-aligned
   A-B-C, transition-probed bottleneck, and QRM comparison suites.
+- `continuous_frozen_lake_bucket_qrmax_reference.csv`: reference sweeps for the
+  continuous-coordinate Frozen Lake Bucket QR-MAX experiment, including the
+  deterministic A-B-C comparison and a light-noise comparison.
 
 Included figures:
 

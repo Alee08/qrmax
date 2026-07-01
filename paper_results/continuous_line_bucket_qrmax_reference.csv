@@ -1,23 +1,10 @@
 suite,algorithm,event_aware,buckets,threshold,noise_std,seeds,train_episodes,eval_episodes,success_mean,success_min,success_max,average_length_mean,source
-bucket_event_ablation,QRMAX,false,10,8,0.005,1500-1519,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-bucket_event_ablation,QRMAX,true,10,8,0.005,1500-1519,300,100,1.000000,1.000000,1.000000,7.640000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_algorithm_comparison,QRMAX,false,10,8,0.005,1600-1619,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_algorithm_comparison,QRMAX,true,10,8,0.005,1600-1619,300,100,1.000000,1.000000,1.000000,7.600000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_algorithm_comparison,QL,false,10,8,0.005,1600-1619,300,100,1.000000,1.000000,1.000000,7.600000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_algorithm_comparison,QL,true,10,8,0.005,1600-1619,300,100,1.000000,1.000000,1.000000,7.600000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_algorithm_comparison,RMAX,false,10,8,0.005,1600-1619,300,100,0.600000,0.000000,1.000000,7.520000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_algorithm_comparison,RMAX,true,10,8,0.005,1600-1619,300,100,0.950000,0.000000,1.000000,7.590000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_bucket_sweep,QRMAX,false,5,8,0.005,1500-1519,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_bucket_sweep,QRMAX,true,5,8,0.005,1500-1519,300,100,0.650000,0.000000,1.000000,7.600000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_bucket_sweep,QRMAX,false,10,8,0.005,1500-1519,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_bucket_sweep,QRMAX,true,10,8,0.005,1500-1519,300,100,1.000000,1.000000,1.000000,7.640000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_bucket_sweep,QRMAX,false,20,8,0.005,1500-1519,300,100,1.000000,1.000000,1.000000,7.640000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_bucket_sweep,QRMAX,true,20,8,0.005,1500-1519,300,100,1.000000,1.000000,1.000000,7.640000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_noise_sweep,QRMAX,false,10,8,0.000,1500-1519,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_noise_sweep,QRMAX,true,10,8,0.000,1500-1519,300,100,1.000000,1.000000,1.000000,7.490000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_noise_sweep,QRMAX,false,10,8,0.005,1500-1519,300,100,0.000000,0.000000,0.000000,,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_noise_sweep,QRMAX,true,10,8,0.005,1500-1519,300,100,1.000000,1.000000,1.000000,7.640000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_noise_sweep,QRMAX,false,10,8,0.010,1500-1519,300,100,0.008000,0.000000,0.060000,28.880000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_noise_sweep,QRMAX,true,10,8,0.010,1500-1519,300,100,1.000000,1.000000,1.000000,7.730000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
-continuous_noise_sweep,QRMAX,false,10,8,0.020,1500-1519,300,100,0.064000,0.000000,1.000000,21.180000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907
 continuous_noise_sweep,QRMAX,true,10,8,0.020,1500-1519,300,100,0.983000,0.650000,1.000000,9.430000,local sweep with multiagent-rl-rm commit 753a19d59097bae90433c561046b1ae917256907

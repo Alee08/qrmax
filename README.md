@@ -22,12 +22,13 @@ This repository is pinned to the companion-library commit:
 - package: `multiagent-rl-rm`
 - package version: `0.3.0`
 - OfficeWorld IJCAI tag: `v0.3.0-ijcai2026`
-- pinned commit: `ef62e9c44489aabd8f013c9a8bc128bea3114b0d`
+- pinned commit: `c1c379ce57573f075de7c25e346d665b4475ded3`
 
 The default `requirements.txt` installs the companion library from this frozen
 commit. The pinned commit includes the OfficeWorld IJCAI code, the
-continuous-line checks, and the continuous-corridor event-aligned and
-transition-probed Bucket QR-MAX modes.
+continuous-line checks, the continuous-corridor event-aligned and
+transition-probed Bucket QR-MAX modes, and the continuous Frozen Lake
+comparison suites.
 
 ## Install
 
@@ -69,6 +70,12 @@ Validate the continuous-corridor Bucket QR-MAX suites:
 python scripts/validate_continuous_corridor_config.py
 ```
 
+Validate the continuous-FrozenLake Bucket QR-MAX suites:
+
+```bash
+python scripts/validate_continuous_frozen_lake_config.py
+```
+
 Run the continuous-line smoke experiment:
 
 ```bash
@@ -79,6 +86,12 @@ Run the continuous-corridor smoke experiment:
 
 ```bash
 python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_smoke
+```
+
+Run the continuous-FrozenLake smoke experiment:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_smoke
 ```
 
 ## Experiment Suites
@@ -124,15 +137,14 @@ Suites are defined in `configs/continuous_line_bucket_qrmax.json`.
 | Suite | Runs | Purpose |
 | --- | ---: | --- |
 | `continuous_line_smoke` | 1 | Fast event-aware QR-MAX sanity check. |
-| `bucket_event_ablation` | 2 | Compare naive buckets with event-aware buckets for QR-MAX. |
-| `continuous_algorithm_comparison` | 6 | Compare QR-MAX, Q-learning, and R-MAX. |
-| `continuous_bucket_sweep` | 6 | Sweep bucket granularity for QR-MAX. |
-| `continuous_noise_sweep` | 8 | Sweep transition noise for QR-MAX. |
+| `continuous_algorithm_comparison` | 3 | Compare QR-MAX, Q-learning, and R-MAX. |
+| `continuous_bucket_sweep` | 2 | Sweep successful bucket granularities for QR-MAX. |
+| `continuous_noise_sweep` | 4 | Sweep transition noise for QR-MAX. |
 
-Run the QR-MAX event-ablation suite:
+Run the QR-MAX bucket sweep:
 
 ```bash
-python scripts/reproduce_continuous_line.py --suite bucket_event_ablation
+python scripts/reproduce_continuous_line.py --suite continuous_bucket_sweep
 ```
 
 The included reference sweep is
@@ -149,25 +161,16 @@ Suites are defined in `configs/continuous_corridor_bucket_qrmax.json`.
 | Suite | Runs | Purpose |
 | --- | ---: | --- |
 | `continuous_corridor_smoke` | 1 | Fast event-aware QR-MAX sanity check. |
-| `bucket_event_ablation` | 2 | Compare plain buckets with event-aware buckets for QR-MAX. |
 | `continuous_corridor_algorithm_comparison` | 4 | Compare Q-learning, QRM, R-MAX, and QR-MAX. |
-| `continuous_corridor_y_bucket_sweep` | 4 | Sweep vertical bucket granularity for QR-MAX. |
-| `continuous_corridor_hard_event_ablation` | 2 | Hard reset/noise event-ablation. |
 | `continuous_corridor_hard_algorithm_comparison` | 4 | Hard reset/noise algorithm comparison. |
 | `continuous_corridor_bottleneck_smoke` | 1 | Deterministic bottleneck sanity check. |
 | `continuous_corridor_bottleneck_transition_probed` | 1 | Noisy bottleneck solved with transition-probed buckets. |
 | `continuous_corridor_abc_algorithm_comparison` | 3 | A-B-C sequence comparison with event-aligned buckets. |
 
-Run the QR-MAX corridor event-ablation suite:
+Run the QR-MAX corridor algorithm comparison:
 
 ```bash
-python scripts/reproduce_continuous_corridor.py --suite bucket_event_ablation
-```
-
-Run the hard QR-MAX corridor event-ablation suite:
-
-```bash
-python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_hard_event_ablation
+python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_algorithm_comparison
 ```
 
 Run the A-B-C stress comparison:
@@ -184,6 +187,36 @@ python scripts/reproduce_continuous_corridor.py --suite continuous_corridor_bott
 
 The included reference sweep is
 `paper_results/continuous_corridor_bucket_qrmax_reference.csv`.
+
+## Continuous-FrozenLake Bucket QR-MAX
+
+The companion library also exposes a continuous-coordinate Frozen Lake check.
+The task keeps the map1 Frozen Lake layout and Reward Machine sequence
+`A -> B -> C`, but the agent state is continuous `(x, y)` and is mapped to
+finite buckets for the tabular algorithms.
+
+Suites are defined in `configs/continuous_frozen_lake_bucket_qrmax.json`.
+
+| Suite | Runs | Purpose |
+| --- | ---: | --- |
+| `continuous_frozen_lake_smoke` | 1 | Fast QR-MAX sanity check. |
+| `continuous_frozen_lake_abc_algorithm_comparison` | 4 | Compare Q-learning, QRM, R-MAX, and QR-MAX on deterministic A-B-C. |
+| `continuous_frozen_lake_light_noise_comparison` | 3 | Compare Q-learning, QRM, and QR-MAX with light continuous transition noise. |
+
+Run the A-B-C algorithm comparison:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_abc_algorithm_comparison
+```
+
+Run the light-noise comparison:
+
+```bash
+python scripts/reproduce_continuous_frozen_lake.py --suite continuous_frozen_lake_light_noise_comparison
+```
+
+The included reference sweep is
+`paper_results/continuous_frozen_lake_bucket_qrmax_reference.csv`.
 
 ### Continuous-Corridor Diagnostics
 
@@ -221,6 +254,8 @@ Continuous-line Bucket QR-MAX reference sweeps are included as
 `paper_results/continuous_line_bucket_qrmax_reference.csv`.
 Continuous-corridor Bucket QR-MAX reference sweeps are included as
 `paper_results/continuous_corridor_bucket_qrmax_reference.csv`.
+Continuous-FrozenLake Bucket QR-MAX reference sweeps are included as
+`paper_results/continuous_frozen_lake_bucket_qrmax_reference.csv`.
 
 ## Table 4: OfficeWorld 15-Configuration Breakdown
 
